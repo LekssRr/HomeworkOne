@@ -52,7 +52,15 @@ public class Homework {
     // 112211 - true
     public static boolean isPalindrome(String string)
     {
-       String myString = new StringBuilder(string).reverse().toString();
-       return string.equals(myString);
+        int length = string.length();
+        for (int i = 0; i < length / 2; i++)
+        {
+            if (string.charAt(i) != string.charAt(length - 1 - i))
+            {
+                return false;
+            }
+        }
+        return true;
     }
+
 }
