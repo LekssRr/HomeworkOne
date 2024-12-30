@@ -8,7 +8,12 @@ public class Homework {
     //  String string = "I love Java";
     public static void turnString(String string)
     {
-        System.out.printf(new StringBuilder(string).reverse().toString());
+        String myString = new String();
+        for (int i = string.length(); i!=0;i--)
+        {
+            myString = myString + string.charAt(i-1);
+        }
+        System.out.printf(myString);
     }
 
     // int[] ints = {1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9};

@@ -8,7 +8,6 @@ import java.util.*;
 public class Main {
         public static void main(String[] args)
         {
-                //ArrayList
                 MyArrayList A= new MyArrayList();
                 A.Add(new Auto(2));
                 A.Add(new Auto(1));
@@ -38,12 +37,15 @@ public class Main {
                 };
                 //Collections.sort(A, com);
                 A.sort(com);
-                for (int i = 0; i<= A.size(); i++)
+                String str1 = new String();
+                System.out.printf(str1);
+                System.out.printf("  ");
+                for (int i = 0; i<= A.size() -1; i++)
                 {
                         Auto g = (Auto) A.get(i);
-                        String str1 = new String();
                         str1 = Integer.toString(g.getYear());
                         System.out.printf(str1);
                 }
+
         }
 }

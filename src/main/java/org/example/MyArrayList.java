@@ -12,8 +12,6 @@ public class MyArrayList<T> extends AbstractList<T>
     private int pointer = 0;
     private int defaultPointer = 0;
 
-
-
     /*
      Проверяем новый элемнт поместится в массив если он занимает
      последнюю ячейку то вызываем метод Resize который увеличивает размер массива в 2 раза
@@ -62,11 +60,7 @@ public class MyArrayList<T> extends AbstractList<T>
     //Сортируем массив
     public void sort(Comparator<? super T> c)
     {
-        final int expectedModCount = modCount;
         Arrays.sort((T[]) array, 0, pointer, c);
-        if (modCount != expectedModCount)
-            throw new ConcurrentModificationException();
-        modCount++;
     }
     //возвращает длинну массива
     @Override
