@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Homework {
 
@@ -16,9 +15,7 @@ public class Homework {
     // Удалить дубликаты из массива и вывести в консоль
     public static void getDistinctNumbers(int[] ints)
     {
-        int[] arr = Arrays.stream(ints)
-                .distinct().toArray();
-
+        int[] arr = Arrays.stream(ints).distinct().toArray();
         System.out.println(Arrays.toString(arr));
     }
 
