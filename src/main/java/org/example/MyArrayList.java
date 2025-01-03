@@ -12,7 +12,6 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T> {
     private Comparable[] array = new Comparable[initSize];
     private int pointer = 0;
     private int defaultPointer = 0;
-
     /*
      Проверяем новый элемнт поместится в массив если он занимает
      последнюю ячейку то вызываем метод Resize который увеличивает размер массива в 2 раза

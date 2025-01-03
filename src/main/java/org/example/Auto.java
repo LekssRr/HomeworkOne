@@ -2,8 +2,7 @@ package org.example;
 
 import java.util.Comparator;
 
-public class Auto
-{
+public class Auto implements Comparable {
     private int year;
 
     Auto(int newYear)
@@ -11,10 +10,16 @@ public class Auto
         year = newYear;
         String str = new String();
         str = Integer.toString(newYear);
-        System.out.printf(str);
+        //System.out.printf(str);
     }
     public int getYear()
     {
         return year;
+    }
+
+    @Override
+    public int compareTo(Object o)
+    {
+        return this.year;
     }
 }
