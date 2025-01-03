@@ -1,14 +1,15 @@
 package org.example;
 
+import java.lang.foreign.SymbolLookup;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-public class MyArrayList<T> extends AbstractList<T>
-{
-    //ArrayList
+public class MyArrayList<T> extends AbstractList<T> implements Comparable<T> {
+
     private final int initSize = 16;
     private final int CutRate = 4;
-    private Object[] array = new Object[initSize];
+    private Comparable[] array = new Comparable[initSize];
     private int pointer = 0;
     private int defaultPointer = 0;
 
@@ -16,7 +17,7 @@ public class MyArrayList<T> extends AbstractList<T>
      Проверяем новый элемнт поместится в массив если он занимает
      последнюю ячейку то вызываем метод Resize который увеличивает размер массива в 2 раза
      */
-    public void Add(T item)
+    public void Add(Comparable item)
     {
         if(pointer == array.length-1)
         {
@@ -24,13 +25,20 @@ public class MyArrayList<T> extends AbstractList<T>
         }
         array[pointer++] = item;
     }
+    public void addToIndex(Comparable item, int Index)
+    {
+        if(pointer <= Index)
+        {
+            array[Index] = item;
+        }
+    }
     /*
     Создает новый массив и записывает его в array
     pointer приравнивает к defaultPointer
      */
     public void Clear()
     {
-        array = new Object[initSize];
+        array = (Comparable[])new Object[initSize];
         pointer = defaultPointer;
     }
     /*
@@ -53,15 +61,95 @@ public class MyArrayList<T> extends AbstractList<T>
     */
     private void Resize(int newLength)
     {
-        Object[] newArray = new Object[newLength];
+        Comparable[] newArray = (Comparable[])new Object[newLength];
         System.arraycopy(array, 0, newArray, 0, pointer);
         array = newArray;
     }
-    //Сортируем массив
+    private void swap(Object[] array, int ind1, int ind2)
+    {
+        Object tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+    /*
+    Принимаем объект типа компоратор
+    создаем булевую переменную needIteration и присваеваем ей значение true
+    запускаем цикл while и передаем в него needIteration
+    сразу же меняем значение переменной в false
+    и запускаем цикл for который перебирает весь массив array
+    и каждый элемент массива приводит к типу comporator
+    после чего сравнивает объект i и i -1
+    и вызвает функцию swap переводя переменную needIteration в значениие true
+     */
+
     public void sort(Comparator<? super T> c)
     {
-        Arrays.sort((T[]) array, 0, pointer, c);
+        boolean needIteration = true;
+        while (needIteration)
+        {
+            needIteration = false;
+            for (int i = 1; i <= pointer - 1; i++)
+            {
+                if (c.compare((T) this.get(i), (T) this.get(i - 1)) > 0)
+                {
+                        swap(array, i, i - 1);
+                        needIteration = true;
+                }
+            }
+        }
     }
+    public void quickSort(MyArrayList<T> sortingList)
+    {
+        sortingList.Algoritm(sortingList.toArray(), 0, sortingList.size()-1);
+    }
+
+    private void Algoritm(Comparable[] arr, int low, int high)
+    {
+        if (low < high)
+        {
+            int i = low;
+            int j = high;
+            Comparable x = arr[(i + j) / 2];
+
+            do {
+                while (arr[i].compareTo(x) < 0)
+                {
+                    i++;
+                }
+                while (x.compareTo(arr[j]) < 0)
+                {
+                    j--;
+                }
+
+                if ( i <= j) {
+                    Comparable tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                    i++;
+                    j--;
+                }
+
+            } while (i <= j);
+
+            Algoritm(arr, low, j);
+            Algoritm(arr, i, high);
+        }
+    }
+    public Comparable getLow() {
+
+        return  array[0];
+    }
+    public Comparable getHight() {
+        return array[pointer];
+    }
+    public Comparable elementData(int index) {
+        return array[index];
+    }
+    public Comparable[] toArray()
+    {
+        return array;
+    }
+
     //возвращает длинну массива
     @Override
     public int size()
@@ -71,7 +159,8 @@ public class MyArrayList<T> extends AbstractList<T>
     //Возвращает элемент массива по индексу
     @Override
     public T get(int index) {
-        return (T) array[index];
+
+        return (T)array[index];
     }
 
 
@@ -122,4 +211,12 @@ public class MyArrayList<T> extends AbstractList<T>
         super.replaceAll(operator);
     }
 
+
+    @Override
+    public int compareTo(Object o)
+    {
+        //Comparable result = (Comparable) o;
+
+        return 1;
+    }
 }
