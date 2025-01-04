@@ -28,6 +28,7 @@ public class MyHashMap <K,V> extends AbstractMap<K,V> implements Map<K,V>, Clone
     {
         return arrayValue[Index];
     }
+    @Override
     public V get(Object K)
     {
         for (int i = 0; i<= pointer -1; i++)
@@ -60,7 +61,7 @@ public class MyHashMap <K,V> extends AbstractMap<K,V> implements Map<K,V>, Clone
         arrayKey[myPointer] = key;
         arrayValue[myPointer] = value;
     }
-
+    @Override
     public V put(K key, V value)
     {
         for(int i = 0; i<=pointer; i++)
@@ -73,8 +74,8 @@ public class MyHashMap <K,V> extends AbstractMap<K,V> implements Map<K,V>, Clone
         addToArrays(key, value);
         return (V) this.getArrayKey(pointer);
     }
-    public int Size()
-    {
+    @Override
+    public int size() {
         return pointer;
     }
 
@@ -126,7 +127,7 @@ public class MyHashMap <K,V> extends AbstractMap<K,V> implements Map<K,V>, Clone
         return resultSet;
     }
 
-    public Set<V> valueSet()
+    public Set<V> setValue(V value)
     {
         Set<V> resultSet= new HashSet<V>();
         for (int i = 0; i<= pointer;i++)
@@ -146,7 +147,8 @@ public class MyHashMap <K,V> extends AbstractMap<K,V> implements Map<K,V>, Clone
         }
         return false;
     }
-    public void Clear()
+    @Override
+    public void clear()
     {
         arrayKey = new Object[initSize];
         arrayValue = new Object[initSize];
