@@ -5,12 +5,15 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-public class MyArrayList<T> extends AbstractList<T> implements Comparable<T> {
-
+public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
+{
+    //Начальный размер массива
     private final int initSize = 16;
-    private final int CutRate = 4;
+    //Массив значений
     private Comparable[] array = new Comparable[initSize];
+    //Длинна массива
     private int pointer = 0;
+    //Начальная длинна массива
     private int defaultPointer = 0;
 
     /*
