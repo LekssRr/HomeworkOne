@@ -50,15 +50,16 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
         pointer = defaultPointer;
     }
     /*
-    Отчищаем массив
+    Отчищаем ячейку переданного индекса проверяем присутствует ли данный индекс в массиве
+    если да то отчищаем
     */
     public void Remove(int index)
     {
-        if (index <= array.length - 1)
+        if (index <= pointer - 1)
         {
             array[index] = null;
         }
-        for (int i = index +1; i< array.length; i++)
+        for (int i = index +1; i< pointer; i++)
         {
             array[i -1] = array[i];
         }
