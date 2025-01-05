@@ -161,6 +161,7 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     /*
     возвращает массив
     */
+    @Override
     public Comparable[] toArray()
     {
         return array;
