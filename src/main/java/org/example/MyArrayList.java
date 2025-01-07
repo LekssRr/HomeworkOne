@@ -7,6 +7,7 @@ import java.util.function.UnaryOperator;
 
 public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
 {
+    //ArrayList
     //Начальный размер массива
     private final int initSize = 16;
     //Массив значений
@@ -53,16 +54,20 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     Отчищаем ячейку переданного индекса проверяем присутствует ли данный индекс в массиве
     если да то отчищаем
     */
-    public void Remove(int index)
+    //@Override
+    public T remove(int index)
     {
+        T result = null;
         if (index <= pointer - 1)
         {
+            result = (T)array[index];
             array[index] = null;
         }
         for (int i = index +1; i< pointer; i++)
         {
             array[i -1] = array[i];
         }
+        return result;
     }
     /*
     Создаем новый массив увеличивая его вместимость на newLength
@@ -126,7 +131,7 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     while (x.compareTo(arr[j]) < 0) который перебирает все значения от high до x
     if ( i <= j) при саблюдении данного усовия объекты меняются местами
     Algoritm(arr, low, j) рекрусивно запускаем алгоритм заново передовая в него новое значение hight
-    Algoritm(arr, i, high) рекрусивно запускаем алгоритм заново передовая в него новое значение low
+    Algoritm(arr, i, high) рекурсивно запускаем алгоритм заново передовая в него новое значение low
     */
     private static void Algoritm(Comparable[] arr, int low, int high)
     {
