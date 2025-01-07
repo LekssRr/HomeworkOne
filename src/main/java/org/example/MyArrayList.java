@@ -54,7 +54,7 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     Отчищаем ячейку переданного индекса проверяем присутствует ли данный индекс в массиве
     если да то отчищаем
     */
-    //@Override
+    @Override
     public T remove(int index)
     {
         T result = null;
