@@ -51,8 +51,8 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
         pointer = defaultPointer;
     }
     /*
-    Отчищаем ячейку переданного индекса проверяем присутствует ли данный индекс в массиве
-    если да то отчищаем
+    проверяем присутствует ли данный индекс в массиве
+    если да то отчищаем, перемещаем ячейку массива стоящего после данной ячейки на ее место
     */
     @Override
     public T remove(int index)
@@ -67,6 +67,8 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
         {
             array[i -1] = array[i];
         }
+        this.array[pointer-1] = null;
+        pointer = pointer-1;
         return result;
     }
     /*
