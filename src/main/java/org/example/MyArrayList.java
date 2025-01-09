@@ -172,8 +172,7 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     @Override
     public Comparable[] toArray()
     {
-
-        return array;
+        return this.array;
     }
     /*
     Возвращает длинну массива
