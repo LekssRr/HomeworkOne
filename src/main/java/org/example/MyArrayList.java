@@ -172,7 +172,12 @@ public class MyArrayList<T> extends AbstractList<T> implements Comparable<T>
     @Override
     public Comparable[] toArray()
     {
-        return array;
+        Comparable[] newArray = new Comparable[this.pointer +1];
+        for(int i =0; i< pointer; i++)
+        {
+            newArray[i] = array[i];
+        }
+        return newArray;
     }
     /*
     Возвращает длинну массива
